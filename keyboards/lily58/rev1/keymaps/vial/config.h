@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Space reduction */
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 6
+#define DYNAMIC_KEYMAP_LAYER_COUNT 4
 #define VIAL_TAP_DANCE_ENTRIES 4
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
@@ -44,6 +44,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD2
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 100
+#define HOLD_ON_OTHER_KEY_PRESS
+#define TAPPING_TERM 80
+#define RETRO_TAPPING
+// #define IGNORE_MOD_TAP_INTERRUPT
 
+// Mouse speed configuration
+#define MK_3_SPEED
 

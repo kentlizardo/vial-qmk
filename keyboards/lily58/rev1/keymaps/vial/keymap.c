@@ -18,149 +18,24 @@
 #include <stdio.h>
 
 enum layer_number {
-  _QWERTY = 0,
-  _LOWER,
-  _RAISE,
-  _ADJUST,
-  _MO4,
-  _MO5
+  _ALPHA = 0,
+  _SYMBOL,
+  _NAV,
+  _FUNC
 };
 
-#define RAISE MO(_RAISE)
-#define LOWER MO(_LOWER)
+// #define RAISE MO(_NAV)
+// #define LOWER MO(_SYMBOL)
 
+// Generated from QMK Configurator and `qmk json2c`
+// Must set up QMK TT for Copy, and Vial tap dance for Paste since Windows does not recognize.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
-/* QWERTY
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  ~   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |LOWER | LGUI | Alt  | /Space  /       \Enter \  |BackSP| RGUI |RAISE |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `-------------------''-------'           '------''--------------------'
- */
-
- [_QWERTY] = LAYOUT(
-  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
-  KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
-  KC_LCTL, KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-  KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC,  KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-                      LOWER, KC_LGUI,  KC_LALT, KC_SPC,   KC_ENT,   KC_BSPC,  KC_RGUI, RAISE
-),
-/* LOWER
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   !  |   @  |   #  |   $  |   %  |                    |   ^  |   &  |   *  |   (  |   )  |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   1  |   2  |   3  |   4  |   5  |-------.    ,-------|   6  |   7  |   8  |   9  |   0  |      |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|   |  |   `  |   +  |   {  |   }  |      |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |LOWER | LGUI | Alt  | /Space  /       \Enter \  |BackSP| RGUI |RAISE |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `-------------------''-------'           '------''--------------------'
- */
-[_LOWER] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                   _______, _______, _______,_______, _______, _______,
-  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-  _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, KC_PIPE, KC_GRAVE, KC_PLUS, KC_LCBR, KC_RCBR, _______,
-                             _______, _______, _______, _______, _______,  _______, _______, _______
-),
-/* RAISE
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      | Left | Down |  Up  |Right |      |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|   +  |   =  |   [  |   ]  |   \  |      |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |LOWER | LGUI | Alt  | /Space  /       \Enter \  |BackSP| RGUI |RAISE |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `-------------------''-------'           '------''--------------------'
- */
-
-[_RAISE] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                       KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-  _______, _______, _______, _______, _______, _______,                     XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
-  _______, _______, _______, _______, _______, _______,   _______, _______, KC_PLUS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, _______,
-                             _______, _______, _______,  _______, _______,  _______, _______, _______
-),
-
-/* ADJUST
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |LOWER | LGUI | Alt  | /Space  /       \Enter \  |BackSP| RGUI |RAISE |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
- */
-  [_ADJUST] = LAYOUT(
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                             _______, _______, _______, _______, _______,  _______, _______, _______
-  ),
-/* MO(4) 
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |LOWER | LGUI | Alt  | /Space  /       \Enter \  |BackSP| RGUI |RAISE |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
- */
-  [_MO4] = LAYOUT(
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                             _______, _______, _______, _______, _______,  _______, _______, _______
-  ),
-/* MO(5) 
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |LOWER | LGUI | Alt  | /Space  /       \Enter \  |BackSP| RGUI |RAISE |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
- */
-  [_MO5] = LAYOUT(
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                             _______, _______, _______, _______, _______,  _______, _______, _______
-  )
+    [_ALPHA] = LAYOUT(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TAB, KC_Q, KC_W, KC_F, KC_P, KC_B, KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_GRV, KC_LCTL, KC_A, KC_R, KC_S, LSFT_T(KC_T), KC_G, KC_M, RSFT_T(KC_N), KC_E, KC_I, KC_O, RCTL_T(KC_QUOT), LSFT_T(KC_ESC), KC_Z, KC_X, KC_C, KC_D, KC_V, OSM(MOD_LCTL|MOD_LSFT), OSM(MOD_RCTL|MOD_RALT), KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_BSLS), KC_LGUI, KC_LALT, TRI_LAYER_LOWER_LAYER, KC_SPC, KC_ENT, QK_TRI_LAYER_UPPER, KC_BSPC, OSM(MOD_LCTL|MOD_LSFT|MOD_LGUI)),
+    [_SYMBOL] = LAYOUT(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_NO, KC_TRNS, KC_1, KC_2, KC_3, LSFT_T(KC_4), KC_5, KC_6, RSFT_T(KC_7), KC_8, KC_9, KC_0, KC_RCTL, KC_TRNS, KC_BSLS, KC_SLSH, KC_MINS, KC_EQL, KC_QUOT, KC_TRNS, KC_TRNS, KC_SCLN, KC_DOT, KC_COMM, KC_RBRC, KC_LBRC, KC_RSFT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
+    [_NAV] = LAYOUT(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_A, KC_S, KC_W, KC_D, KC_ACL2, KC_NO, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_NO, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_ACL1, KC_NO, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_RCTL, KC_TRNS, KC_END, KC_PGDN, KC_PGUP, KC_HOME, KC_ACL0, KC_TRNS, KC_TRNS, KC_NO, KC_BTN1, KC_BTN2, KC_BTN3, KC_BTN4, KC_RSFT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(3), KC_TRNS, KC_TRNS),
+    [_FUNC] = LAYOUT(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_F11, KC_F12, KC_F13, KC_F15, KC_F16, KC_F17, KC_F18, KC_F19, KC_F20, KC_F21, KC_NO, KC_TRNS, KC_DEL, KC_CUT, KC_NO, KC_NO, KC_UNDO, KC_AGIN, RSFT_T(KC_CAPS), KC_NUM, KC_SCRL, CW_TOGG, KC_RCTL, KC_TRNS, KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT, KC_NO, KC_TRNS, KC_TRNS, KC_NO, KC_MUTE, KC_MPLY, KC_PSCR, KC_NO, KC_RSFT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
 };
+
 
 #ifdef OLED_ENABLE
 
@@ -171,7 +46,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
+    state = update_tri_layer_state(state, _NAV, _SYMBOL, _FUNC);
     return state;
 }
 
@@ -190,7 +65,7 @@ char keylog_str[24] = {};
 char keylogs_str[21] = {};
 int keylogs_str_idx = 0;
 
-char wpm[4];
+// char wpm[4];
 char layer_misc[7];
 
 const char code_to_name[60] = {
@@ -236,28 +111,29 @@ static void render_status(void) {
     oled_write_P(PSTR("layer "), false);
 
     switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-            oled_write_P(PSTR("QWERTY"), false);
+        case _ALPHA:
+            oled_write_P(PSTR("<alpha>"), false);
             break;
-        case _LOWER:
-            oled_write_P(PSTR("Lower "), false);
+        case _SYMBOL:
+            oled_write_P(PSTR("<sym>"), false);
             break;
-        case _RAISE:
-            oled_write_P(PSTR("Raise "), false);
+        case _NAV:
+            oled_write_P(PSTR("<nav>"), false);
             break;
-        case _ADJUST:
-            oled_write_P(PSTR("Adjust"), false);
+        case _FUNC:
+            oled_write_P(PSTR("<func>"), false);
             break;
         default:
             sprintf(layer_misc, "MO(%01d) ", get_highest_layer(layer_state));
 	    oled_write(layer_misc, false);
             break;
     }
-
-    oled_write_P(PSTR("  "), false);
-    sprintf(wpm, "%03d", get_current_wpm());
-    oled_write(wpm, false);
-    oled_write_P(PSTR(" wpm\n"), false);
+    oled_write_ln(read_keylog(), false);
+    // oled_write_ln(read_keylogs(), false);
+    // oled_write_P(PSTR("  "), false);
+    // sprintf(wpm, "%03d", get_current_wpm());
+    // oled_write(wpm, false);
+    // oled_write_P(PSTR(" wpm\n"), false);
 }
 
 bool oled_task_user(void) {
@@ -271,3 +147,11 @@ bool oled_task_user(void) {
 
 #endif // OLED_ENABLE
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (record->event.pressed) {
+#ifdef OLED_ENABLE
+    set_keylog(keycode, record);
+#endif
+  }
+  return true;
+}
