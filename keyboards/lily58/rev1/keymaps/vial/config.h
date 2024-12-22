@@ -44,10 +44,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD2
 
 #define TAPPING_FORCE_HOLD
-#define HOLD_ON_OTHER_KEY_PRESS
-#define TAPPING_TERM 80
+// #define HOLD_ON_OTHER_KEY_PRESS
+#define TAPPING_TERM 180
 #define RETRO_TAPPING
-// #define IGNORE_MOD_TAP_INTERRUPT
 
 // Mouse speed configuration
 #define MK_3_SPEED
